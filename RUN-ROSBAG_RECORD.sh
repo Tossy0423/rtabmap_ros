@@ -19,13 +19,14 @@ Usage:
 ----------
 - RealSense D435
 $ roslaunch realsense2_camera rs_camera.launch align_depth:=true
+$ bash RUN-ROSBAG-RECORD.sh rs
 
 - ZED camera
 $ roslaunch zed_wrapper zed_no_tf.launch
 $ rosrun dynamic_reconfigure dynparam set zed_node depth_confidence 99
 $ rosrun dynamic_reconfigure dynparam set zed_node depth_texture_conf 90
 $ rosrun dynamic_reconfigure dynparam set zed_node depth_confidence 100
-
+$ bash RUN-ROSBAG-RECORD.sh zed
 
 
 Autor:
