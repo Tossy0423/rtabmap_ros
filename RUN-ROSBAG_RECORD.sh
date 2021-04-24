@@ -26,6 +26,7 @@ function checkdir()
 
 # 保存するディレクトリパス
 SAVE_DIRPATH="/mnt/ssd1000"
+# SAVE_DIRPATH=$PWD
 
 # 保存するディレクトリ名
 SAVE_DIRNAME="bagdata"
@@ -63,10 +64,23 @@ $SAVE_DIRPATH"
 ${NOW_DATE}_zed.bag"
 
     # 実行コマンド作成
-    _cmd="rosbag record /zed_node/rgb/image_rect_color /zed_node/depth/depth_registered /zed_node/rgb/camera_info  /tf /tf_static /clock -O ${SAVE_FILEPATH}/${NOW_DATE}_rtabmap_zed"
-    echo "実行コマンド:
-$_cmd"
+    _cmd="rosbag record \
+            /zed_node/left/image_rect_color \
+            /zed_node/right/image_rect_color \
+            /zed_node/left/camera_info \
+            /zed_node/rgb/image_rect_color \
+            /zed_node/depth/depth_registered \
+            /zed_node/rgb/camera_info \
+            /tf \
+            /tf_static \
+            /clock \
+            -O ${SAVE_FILEPATH}/${NOW_DATE}_rtabmap_zed"
+    echo "実行コマンド: \
+    $_cmd"
     
+
+    sleep 1
+
     # 実行 
     source ~/.bashrc
     $_cmd
@@ -88,7 +102,14 @@ $SAVE_DIRPATH"
 ${NOW_DATE}_rs.bag"
 
     # 実行コマンド作成
-    _cmd="rosbag record /camera/aligned_depth_to_color/image_raw /camera/color/image_raw /camera/color/camera_info /tf /tf_static /clock -O ${SAVE_FILEPATH}/${NOW_DATE}_rtabmap_rs"
+    _cmd="rosbag record \
+            /camera/aligned_depth_to_color/image_raw \
+            /camera/color/image_raw \
+            /camera/color/camera_info \
+            /tf \
+            /tf_static \
+            -O ${SAVE_FILEPATH}/${NOW_DATE}_rtabmap_rs"
+    
     echo "実行コマンド:
 $_cmd"
     
