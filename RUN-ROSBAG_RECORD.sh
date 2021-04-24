@@ -189,7 +189,7 @@ ${NOW_DATE}_rs.bag"
             /camera/color/camera_info \
             /tf \
             /tf_static \
-            -O ${SAVE_FILEPATH}/${NOW_DATE}_rtabmap_rs"
+            -O ${SAVE_FILEPATH}/${NOW_DATE}_rs"
     
     echo "実行コマンド:
 $_cmd"
