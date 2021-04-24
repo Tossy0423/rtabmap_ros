@@ -16,7 +16,7 @@ source ~/rtabmap_ws/devel/setup.bash
 # 実行コマンド作成
 # _cmd="rosrun ORB_SLAM2 RGBD Vocabulary/ORBvoc.txt ${SETTING_FILE_PATH} ${SUBSCRIBE_IMAGE_COLOR} ${SUBSCRIBE_IMAGE_DEPTH}"
 
-_cmd="roslaunch rtabmap_ros rtabmap.launch \
+_cmd="roslaunch rtabmap_ros mapping_zed.launch \
     rtabmap_args:="--delete_db_on_start" \
     rgb_topic:=/zed_node/rgb/image_rect_color \
     depth_topic:=/zed_node/depth/depth_registered \
