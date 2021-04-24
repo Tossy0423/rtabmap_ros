@@ -34,6 +34,7 @@ onigirimal
 
 COMMENTOUT
 
+
 function checkdir()
 {   
 
@@ -47,7 +48,7 @@ function checkdir()
     if [ ! -d $1 ]; then
         echo "bagdataを保存するディレクトリが見つかりませんでした."
         echo "保存ディレクトリを作成します. ($_cmd)"
-        # mkdir $_cmd
+        mkdir $_cmd
     fi
 }
 
@@ -110,7 +111,7 @@ ${NOW_DATE}_zed.bag"
     if [[ $select_topic = [0] ]]; then
         echo ""
         echo "ORB-SLAM2のみで使用できるTopicを取得します."
-        echo "単位時間あたりのファイルサイズは, 100MB/sec(6GB/min)です."    
+        echo "単位時間あたりのファイルサイズは, 100MB/sec(6GB/min)です."
         _cmd="rosbag record \
             /zed_node/left/image_rect_color \
             /zed_node/right/image_rect_color \
@@ -121,9 +122,34 @@ ${NOW_DATE}_zed.bag"
             -O ${SAVE_FILEPATH}/${NOW_DATE}_ORBonly_zed"
     
     elif [[ $select_topic = [1] ]]; then
-        echo abort
+        echo ""
+        echo "RTAB-Mapのみで使用できるTopicを取得します."
+        echo "単位時間あたりのファイルサイズは, 100MB/sec(6GB/min)です."
+        _cmd="rosbag record \
+            /zed_node/depth/depth_registered \
+            /zed_node/rgb/camera_info \
+            /zed_node/rgb/image_rect_color \
+            /tf \
+            /tf_static \
+            /clock \
+            -O ${SAVE_FILEPATH}/${NOW_DATE}_RTABonly_zed"
+    
     elif [[ $select_topic = [2] ]]; then
-        echo hoge
+        echo ""
+        echo "ORB-SLAM2とRTAB-Mapで使用できるTopicを取得します."
+        echo "単位時間あたりのファイルサイズは, 200MB/sec(6GB/min)です."
+        _cmd="rosbag record \
+            /zed_node/left/image_rect_color \
+            /zed_node/right/image_rect_color \
+            /zed_node/left/camera_info \
+            /zed_node/depth/depth_registered \
+            /zed_node/rgb/camera_info \
+            /zed_node/rgb/image_rect_color \
+            /tf \
+            /tf_static \
+            /clock \
+            -O ${SAVE_FILEPATH}/${NOW_DATE}_ORBandRTAB_zed"
+    
     fi
 
 
@@ -137,7 +163,7 @@ ${NOW_DATE}_zed.bag"
 
     # 実行 
     source ~/.bashrc
-    # $_cmd
+    $_cmd
 
 
 
@@ -169,5 +195,5 @@ $_cmd"
     
     # 実行 
     source ~/.bashrc
-    # $_cmd 
+    $_cmd 
 fi
