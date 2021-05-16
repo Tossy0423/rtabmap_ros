@@ -12,7 +12,6 @@
 # child3
 # RTAB-MAPSLAM
 
-echo "${1}"
 
 
 
@@ -20,11 +19,10 @@ echo "${1}"
 if [ "${1}" = "launch_zed" ]; then
 
 readonly CMD_LAUNCH_ZED="roslaunch zed_wrapper zed_no_tf.launch"
-echo "${CMD_LAUNCH_ZED}"
 
 PROMPT="
 ----------------------------------------
-ZED Cameraを起動します.
+(1) ZED Cameraを起動します.
 $ ${CMD_LAUNCH_ZED}
 
 start   : s
@@ -78,7 +76,7 @@ readonly CHANGE_PARAM3="rosrun dynamic_reconfigure dynparam set zed_node depth_c
 
 PROMPT="
 ----------------------------------------
-ZED Camera Parameterを再設定します.
+(2) ZED Camera Parameterを再設定します.
 $ ${CHANGE_PARAM1}
 $ ${CHANGE_PARAM2}
 $ ${CHANGE_PARAM3}
@@ -122,8 +120,39 @@ while true;
 
 ## rosbag
 elif [ "${1}" = "rosbag" ]; then
-readonly CMD_ROSBAG="bash RUN-ROSBAG-RECORD.sh zed"
-echo "${CMD_ROSBAG}"
+readonly CMD_ROSBAG="bash RUN-ROSBAG_RECORD.sh zed"
+# echo "${CMD_ROSBAG}"
+PROMPT="
+----------------------------------------
+(3) rosbagを. 
+$ ${CMD_ROSBAG}
+
+start   : s
+quit    : q
+----------------------------------------
+>> "
+
+while true; 
+  do
+    
+    # ユーザーからの入力を待つ
+    read -n 1 -s -p "${PROMPT}" input;
+    # 入力した文字を表示
+    echo "${input}"
+    
+    # quit
+    if [ ${input} = "q" ]; then
+      echo "break"
+      break;
+    
+    # プログラムを実行
+    elif [ ${input} = "s" ]; then
+      echo "start"
+      ${CMD_ROSBAG}
+      sleep 1
+    fi  
+ 
+  done
 
 
 
@@ -144,18 +173,17 @@ camera_info_topic:=/zed_node/rgb/camera_info \
 frame_id:=base_link \
 approx_sync:=false \
 use_sim_time:=true \
-rviz:=false"
+rviz:=true"
 
 
 PROMPT="
 ----------------------------------------
-RTAB-MAPを開始します. 
+(4) RTAB-MAPを開始します. 
 $ ${CMD_SLAM}
 
 start   : s
 quit    : q
 ----------------------------------------
-
 >> "
 
 while true; 
