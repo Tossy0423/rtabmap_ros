@@ -1,16 +1,31 @@
 #!/bin/bash
 
+<< COMMENTOUT
+Overview:
+----------
+ZED Cameraを使ったRTAB-MAPによるSLAMを実行するときに実行するファイル.
 
-# child0
-# $ roslaunch zed_wrapper zed_no_tf.launch
-# child1
-# $ rosrun dynamic_reconfigure dynparam set zed_node depth_confidence 99
-# $ rosrun dynamic_reconfigure dynparam set zed_node depth_texture_conf 90
-# $ rosrun dynamic_reconfigure dynparam set zed_node depth_confidence 100
-# child2
-# $ bash RUN-ROSBAG-RECORD.sh zed
-# child3
-# RTAB-MAPSLAM
+
+
+Usage:
+----------
+1. ZED CameraとROSのwrapperを起動
+    $ bash RUN-MAPPING_WITH_ZED.sh launch_zed
+2.zed_wrapper_rosでのパラメータを再設定
+    $ bash RUN-MAPPING_WITH_ZED.sh change_params
+3. (option) RTAB-MAP用のrosbagを起動
+    $ bash RUN-MAPPING_WITH_ZED.sh rosbag
+4. RTAB-MAPを起動
+    $ bash RUN-MAPPING_WITH_ZED.sh slam
+
+
+
+Autor:
+----------
+onigirimal
+
+COMMENTOUT
+
 
 
 
@@ -28,7 +43,6 @@ $ ${CMD_LAUNCH_ZED}
 start   : s
 quit    : q
 ----------------------------------------
-
 >> "
 
 while true; 
