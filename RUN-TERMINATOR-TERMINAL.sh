@@ -3,7 +3,7 @@
 # terminatorを立ち上げるためのプログラム
 
 ## RTAB-MAP用のTerminatorを立ち上げる
-terminator -l mapping_rtabmap
+terminator -l mapping_rtabmap2 --working-directory ${PWD}
 
 
 
