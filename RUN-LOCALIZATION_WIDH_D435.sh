@@ -12,7 +12,7 @@ use_sim_time:=false \
 rviz:=true \
 rtabmapviz:=false \
 localization:=true \
-database_path:=/home/robo20/rtabmap_ws/src/rtabmap_ros/3f3.db \
+database_path:=/home/robo20/rtabmap_ws/src/rtabmap_ros/2f.db \
 "
 # 再生する時
 # rosbag play -r 1.0 -l --clock <bagfile_path>
