@@ -12,9 +12,13 @@ fi
 
 cp ./terminator_config/config ~/.config/terminator/config
 
-
 if [ "${1}" = "zed" ]; then
-    terminator -l mapping_rtabmap2 --working-directory ${PWD} &
+    terminator -l rtabmap_zed --working-directory ${PWD} &
+    sleep 1
+
+elif [ "${1}" = "rs" ]; then
+    terminator -l rtabmap_rs --working-directory ${PWD} &
+    echo "rs"
     sleep 1
 fi 
 
