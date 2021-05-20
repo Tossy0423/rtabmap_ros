@@ -185,9 +185,9 @@ rgb_topic:=/zed_node/rgb/image_rect_color \
 depth_topic:=/zed_node/depth/depth_registered \
 camera_info_topic:=/zed_node/rgb/camera_info \
 frame_id:=base_link \
-approx_sync:=false \
+approx_sync:=true \
 use_sim_time:=true \
-rviz:=true"
+rviz:=false"
 
 
 PROMPT="
@@ -216,6 +216,7 @@ while true;
     # プログラムを実行
     elif [ ${input} = "s" ]; then
       echo "start"
+      source ../../devel/setup.bash
       ${CMD_SLAM}
       sleep 1
     fi  
