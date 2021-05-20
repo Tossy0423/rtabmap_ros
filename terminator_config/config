@@ -11,10 +11,10 @@
     [[[window0]]]
       parent = ""
       type = Window
-  [[autodrive]]
+  [[rtabmap_rs]]
     [[[child0]]]
       fullscreen = False
-      last_active_term = 531e09e9-96fb-4232-ae15-e60ca2f7fac4
+      last_active_term = 0ecf22e8-1e06-4af2-b965-87b1b820c346
       last_active_window = True
       maximised = True
       order = 0
@@ -29,63 +29,34 @@
       position = 924
       ratio = 0.5
       type = HPaned
-    [[[child2]]]
-      order = 0
-      parent = child1
-      position = 512
-      ratio = 0.501960784314
+    [[[child10]]]
+      order = 1
+      parent = child2
+      position = 254
+      ratio = 0.5
       type = VPaned
-    [[[child5]]]
+    [[[child11]]]
+      order = 0
+      parent = child10
+      position = 460
+      ratio = 0.500544069641
+      type = HPaned
+    [[[child14]]]
+      order = 1
+      parent = child10
+      position = 460
+      ratio = 0.500544069641
+      type = HPaned
+    [[[child17]]]
       order = 1
       parent = child1
       position = 510
       ratio = 0.5
       type = VPaned
-    [[[terminal3]]]
-      command = echo 0; bash;
-      directory = ""
-      order = 0
-      parent = child2
-      profile = autodrive_profile
-      type = Terminal
-      uuid = 531e09e9-96fb-4232-ae15-e60ca2f7fac4
-    [[[terminal4]]]
-      command = echo 1; bash;
+    [[[child19]]]
       order = 1
-      parent = child2
-      profile = autodrive_profile
-      type = Terminal
-      uuid = 74403490-108f-4e86-ae4c-4c43c24170af
-    [[[terminal6]]]
-      command = echo 3; bash;
-      order = 0
-      parent = child5
-      profile = autodrive_profile
-      type = Terminal
-      uuid = a6059b6e-cca4-47e5-9370-320deca207d4
-    [[[terminal7]]]
-      command = echo 2; bash;
-      order = 1
-      parent = child5
-      profile = autodrive_profile
-      type = Terminal
-      uuid = ec8326ad-6836-4fc3-aa94-ba9b0c550b08
-  [[mapping]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = 531e09e9-96fb-4232-ae15-e60ca2f7fac4
-      last_active_window = True
-      maximised = True
-      order = 0
-      parent = ""
-      position = 67:27
-      size = 1853, 1025
-      title = robo20@wrs19-Alienware-m15: ~
-      type = Window
-    [[[child1]]]
-      order = 0
-      parent = child0
-      position = 924
+      parent = child17
+      position = 461
       ratio = 0.5
       type = HPaned
     [[[child2]]]
@@ -94,106 +65,102 @@
       position = 510
       ratio = 0.5
       type = VPaned
-    [[[child5]]]
-      order = 1
-      parent = child1
-      position = 510
-      ratio = 0.5
+    [[[child3]]]
+      order = 0
+      parent = child2
+      position = 253
+      ratio = 0.50099009901
       type = VPaned
-    [[[terminal3]]]
-      command = echo 0; bash;
-      directory = ""
+    [[[child4]]]
       order = 0
-      parent = child2
-      profile = mapping_profile
-      type = Terminal
-      uuid = 531e09e9-96fb-4232-ae15-e60ca2f7fac4
-    [[[terminal4]]]
-      command = echo 1; bash;
-      order = 1
-      parent = child2
-      profile = mapping_profile
-      type = Terminal
-      uuid = 74403490-108f-4e86-ae4c-4c43c24170af
-    [[[terminal6]]]
-      command = echo 2; bash;
-      directory = ""
-      order = 0
-      parent = child5
-      profile = mapping_profile
-      type = Terminal
-      uuid = a6059b6e-cca4-47e5-9370-320deca207d4
-    [[[terminal7]]]
-      command = echo 3; bash;
-      directory = cd /home/robo20/project_serius/src; bash;
-      order = 1
-      parent = child5
-      profile = mapping_profile
-      type = Terminal
-      uuid = ec8326ad-6836-4fc3-aa94-ba9b0c550b08
-  [[mapping_rtabmap]]
-    [[[child0]]]
-      fullscreen = False
-      last_active_term = 90ffdef0-ef07-4ce6-b5a3-5f7308f241b8
-      last_active_window = True
-      maximised = True
-      order = 0
-      parent = ""
-      position = 67:27
-      size = 1853, 1025
-      title = robo20@wrs19-Alienware-m15: ~
-      type = Window
-    [[[child1]]]
-      order = 0
-      parent = child0
-      position = 924
-      ratio = 0.5
+      parent = child3
+      position = 460
+      ratio = 0.500544069641
       type = HPaned
-    [[[child2]]]
-      order = 0
-      parent = child1
-      position = 510
-      ratio = 0.5
-      type = VPaned
-    [[[child5]]]
+    [[[child7]]]
       order = 1
-      parent = child1
-      position = 510
-      ratio = 0.5
-      type = VPaned
-    [[[terminal3]]]
-      command = "bash RUN-MAPPING_WITH_ZED.sh launch_zed; bash; "
-      directory = ""
+      parent = child3
+      position = 460
+      ratio = 0.500544069641
+      type = HPaned
+    [[[terminal12]]]
+      command = "bash RUN-MAPPING_WITH_D435.sh rosbag; bash; "
       order = 0
-      parent = child2
+      parent = child11
       profile = default
       type = Terminal
-      uuid = 90ffdef0-ef07-4ce6-b5a3-5f7308f241b8
-    [[[terminal4]]]
-      command = "bash RUN-MAPPING_WITH_ZED.sh change_params; bash; "
-      directory = ""
+      uuid = 79f7e084-e314-4dc0-ab22-14acbc8bfdbc
+    [[[terminal13]]]
+      command = 'echo "5"; bash; '
       order = 1
-      parent = child2
+      parent = child11
       profile = default
       type = Terminal
-      uuid = ba80d528-23e5-4d0f-9e48-180a1ae62d1f
+      uuid = efb6dc16-15ff-4302-ae7c-9dc45e10f754
+    [[[terminal15]]]
+      command = "bash RUN-MAPPING_WITH_D435.sh slam; bash; "
+      order = 0
+      parent = child14
+      profile = default
+      type = Terminal
+      uuid = 4ae39ce4-38a2-4635-b817-55b2a483eec6
+    [[[terminal16]]]
+      command = 'echo "6"; bash; '
+      order = 1
+      parent = child14
+      profile = default
+      type = Terminal
+      uuid = a13fb106-2796-4d40-a11c-587b18a377b2
+    [[[terminal18]]]
+      command = 'echo "7"; bash; '
+      order = 0
+      parent = child17
+      profile = default
+      type = Terminal
+      uuid = b39f01ff-006d-42ba-8d09-c3c7d88b5d1f
+    [[[terminal20]]]
+      command = 'echo "8"; bash; '
+      order = 0
+      parent = child19
+      profile = default
+      type = Terminal
+      uuid = 43e9c60e-c7ae-4066-a5c1-4c0548411d83
+    [[[terminal21]]]
+      command = 'echo "9"; bash; '
+      order = 1
+      parent = child19
+      profile = default
+      type = Terminal
+      uuid = 6e85d83e-c10f-4693-b1a4-a0881284e7a0
+    [[[terminal5]]]
+      command = "bash RUN-MAPPING_WITH_D435.sh launch_rs; bash; "
+      order = 0
+      parent = child4
+      profile = default
+      type = Terminal
+      uuid = a89a3b63-c6d2-45ee-a3bf-8293943b1ee0
     [[[terminal6]]]
-      command = 'echo "run zedcamera"; bash; '
-      directory = ""
-      order = 0
-      parent = child5
-      profile = default
-      type = Terminal
-      uuid = c15395e9-7333-435e-a082-db4de39137b0
-    [[[terminal7]]]
-      command = "bash RUN-MAPPING_WITH_ZED.sh slam; bash; "
-      directory = ""
+      command = 'echo "1"; bash; '
       order = 1
-      parent = child5
+      parent = child4
       profile = default
       type = Terminal
-      uuid = 444ef908-034c-4605-8cf3-54985e020d31
-  [[mapping_rtabmap2]]
+      uuid = fe8a7a88-2f66-4cf1-a325-32d841f50225
+    [[[terminal8]]]
+      command = "bash RUN-MAPPING_WITH_D435.sh launch_rs2; bash; "
+      order = 0
+      parent = child7
+      profile = default
+      type = Terminal
+      uuid = 0ee389d2-300e-4d42-a442-36c657715513
+    [[[terminal9]]]
+      command = 'echo "3"; bash; '
+      order = 1
+      parent = child7
+      profile = default
+      type = Terminal
+      uuid = 0ecf22e8-1e06-4af2-b965-87b1b820c346
+  [[rtabmap_zed]]
     [[[child0]]]
       fullscreen = False
       last_active_term = a89a3b63-c6d2-45ee-a3bf-8293943b1ee0
