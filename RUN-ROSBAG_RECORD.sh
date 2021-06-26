@@ -187,6 +187,7 @@ ${NOW_DATE}_rs.bag"
             /camera/aligned_depth_to_color/image_raw \
             /camera/color/image_raw \
             /camera/color/camera_info \
+            /rtabmap/imu \
             /tf \
             /tf_static \
             -O ${SAVE_FILEPATH}/${NOW_DATE}_rs"
