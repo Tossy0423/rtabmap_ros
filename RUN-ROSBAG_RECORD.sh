@@ -190,6 +190,7 @@ ${NOW_DATE}_rs.bag"
             /rtabmap/imu \
             /tf \
             /tf_static \
+            /camara/imu \
             -O ${SAVE_FILEPATH}/${NOW_DATE}_rs"
     
     echo "実行コマンド:

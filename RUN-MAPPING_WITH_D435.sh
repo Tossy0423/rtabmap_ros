@@ -33,7 +33,21 @@ COMMENTOUT
 ## ZED Cameraを立ち上げる
 if [ "${1}" = "launch_rs" ]; then
 
-readonly CMD_LAUNCH_D435="roslaunch realsense2_camera rs_rgbd.launch align_depth:=true"
+# readonly CMD_LAUNCH_D435="roslaunch realsense2_camera rs_rgbd.launch align_depth:=true"
+# D435i
+readonly CMD_LAUNCH_D435="roslaunch realsense2_camera rs_camera.launch 
+depth_width:=1280
+depth_height:=720
+depth_fps:=15
+infra_width:=1280
+infra_height:=720
+color_width:=1280
+color_height:=720
+color_fps:=15
+align_depth:=true
+unite_imu_method:="linear_interpolation" 
+enable_gyro:=true
+enable_accel:=true"
 
 PROMPT="
 ----------------------------------------
