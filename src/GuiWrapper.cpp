@@ -95,8 +95,7 @@ GuiWrapper::GuiWrapper(int & argc, char** argv) :
 
 	ROS_INFO("rtabmapviz: Using configuration from \"%s\"", configFile.toStdString().c_str());
 	uSleep(500);
-	prefDialog_ = new PreferencesDialogROS(configFile);
-	mainWindow_ = new MainWindow(prefDialog_);
+	mainWindow_ = new MainWindow(new PreferencesDialogROS(configFile));
 	mainWindow_->setWindowTitle(mainWindow_->windowTitle()+" [ROS]");
 	mainWindow_->show();
 	bool paused = false;
@@ -700,10 +699,6 @@ void GuiWrapper::commonStereoCallback(
 	{
 		lastOdomInfoUpdateTime_ = UTimer::now();
 
-		ParametersMap allParameters = prefDialog_->getAllParameters();
-		bool imagesAlreadyRectified = Parameters::defaultRtabmapImagesAlreadyRectified();
-		Parameters::parse(allParameters, Parameters::kRtabmapImagesAlreadyRectified(), imagesAlreadyRectified);
-
 		if(!rtabmap_ros::convertStereoMsg(
 				leftImageMsg,
 				rightImageMsg,
@@ -717,7 +712,7 @@ void GuiWrapper::commonStereoCallback(
 				stereoModel,
 				tfListener_,
 				waitForTransform_?waitForTransformDuration_:0.0,
-				imagesAlreadyRectified))
+				true))
 		{
 			ROS_ERROR("Could not convert stereo msgs! Aborting rtabmapviz update...");
 			return;

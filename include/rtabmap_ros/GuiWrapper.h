@@ -47,7 +47,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace rtabmap
 {
 	class MainWindow;
-	class PreferencesDialog;
 }
 
 class QApplication;
@@ -113,7 +112,6 @@ private:
 	void processRequestedMap(const rtabmap_ros::MapData & map);
 
 private:
-	rtabmap::PreferencesDialog * prefDialog_;
 	rtabmap::MainWindow * mainWindow_;
 	std::string cameraNodeName_;
 	double lastOdomInfoUpdateTime_;
