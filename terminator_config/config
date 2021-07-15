@@ -147,7 +147,7 @@
       type = Terminal
       uuid = fe8a7a88-2f66-4cf1-a325-32d841f50225
     [[[terminal8]]]
-      command = "bash RUN-MAPPING_WITH_D435.sh launch_rs2; bash; "
+      command = "bash RUN-MAPPING_WITH_D435.sh madgwick; bash; "
       order = 0
       parent = child7
       profile = default
