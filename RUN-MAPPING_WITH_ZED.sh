@@ -177,16 +177,18 @@ while true;
 ## RTAB-MAPを起動
 elif [ "${1}" = "slam" ]; then
 
+# bagdataデータ名とする実行時刻を取得
+NOW_DATE=`date '+%Y.%m.%d-%H%M%S'`
 #
-readonly CMD_SLAM="roslaunch rtabmap_ros mapping_zed.launch \
-rtabmap_args:="--delete_db_on_start" \
-database_path:=${PWD}/data.db \
-rgb_topic:=/zed_node/rgb/image_rect_color \
-depth_topic:=/zed_node/depth/depth_registered \
-camera_info_topic:=/zed_node/rgb/camera_info \
-frame_id:=base_link \
-approx_sync:=true \
-use_sim_time:=true \
+readonly CMD_SLAM="roslaunch rtabmap_ros rtabmap.launch
+rtabmap_args:="--delete_db_on_start"
+database_path:=${PWD}/${NOW_DATE}_zed.db
+rgb_topic:=/zed_node/rgb/image_rect_color
+depth_topic:=/zed_node/depth/depth_registered
+camera_info_topic:=/zed_node/rgb/camera_info
+frame_id:=base_link
+approx_sync:=false
+use_sim_time:=true
 rviz:=false"
 
 
