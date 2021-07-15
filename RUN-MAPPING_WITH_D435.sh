@@ -11,12 +11,12 @@ Usage:
 ----------
 1. Realsense CameraとROSのwrapperを起動
     $ bash RUN-MAPPING_WITH_D435.sh launch_rs
-2.zed_wrapper_rosでのパラメータを再設定
+2.
     $ bash RUN-MAPPING_WITH_ZED.sh change_params
 3. (option) RTAB-MAP用のrosbagを起動
-    $ bash RUN-MAPPING_WITH_ZED.sh rosbag
+    $ bash RUN-MAPPING_WITH_D435.sh rosbag
 4. RTAB-MAPを起動
-    $ bash RUN-MAPPING_WITH_ZED.sh slam
+    $ bash RUN-MAPPING_WITH_D435.sh slam
 
 
 
@@ -88,15 +88,21 @@ while true;
 
 
 
-## ZED Cameraのパラメータを再設定
-elif [ "${1}" = "launch_rs2" ]; then
+## Madgwick Filter
+elif [ "${1}" = "madgwick" ]; then
 
-readonly CMD_LAUNCH_D435="roslaunch realsense2_camera rs_rgbd2.launch align_depth:=true"
+readonly CMD_LAUNCH_MADGWICK="
+rosrun imu_filter_madgwick imu_filter_node
+_use_mag:=false
+_publish_tf:=false
+_world_frame:="enu"
+/imu/data_raw:=/camera/imu
+/imu/data:=/rtabmap/imu"
 
 PROMPT="
 ----------------------------------------
-(1) RealSense Cameraを起動します.
-$ ${CMD_LAUNCH_D435}
+(2) Madgwick Filterを有効化.
+$ ${CMD_LAUNCH_MADGWICK}
 
 start   : s
 quit    : q
@@ -119,10 +125,9 @@ while true;
     # プログラムを実行
     elif [ ${input} = "s" ]; then
       echo "start"
-      source ~/realsense_ws/devel/setup.bash
-      echo "${CMD_LAUNCH_D435}"  
+      echo "${CMD_LAUNCH_MADGWICK}"  
       sleep 1
-      ${CMD_LAUNCH_D435}
+      ${CMD_LAUNCH_MADGWICK}
     fi  
  
   done
@@ -175,32 +180,18 @@ while true;
 ## RTAB-MAPを起動
 elif [ "${1}" = "slam" ]; then
 
-#
-
-<< COMMENTOUT
-readonly CMD_SLAM="roslaunch rtabmap_ros mapping_zed.launch \
-rtabmap_args:="--delete_db_on_start" \
-database_path:=${PWD}/data.db \
-rgb_topic:=/zed_node/rgb/image_rect_color \
-depth_topic:=/zed_node/depth/depth_registered \
-camera_info_topic:=/zed_node/rgb/camera_info \
-frame_id:=base_link \
-approx_sync:=false \
-use_sim_time:=true \
-rviz:=true"
-COMMENTOUT
-
-readonly CMD_SLAM="roslaunch rtabmap_ros mapping_d435.launch \
-rtabmap_args:="--delete_db_on_start" \
-database_path:=${PWD}/realsense.db \
-depth_topic:=/camera/aligned_depth_to_color/image_raw \
-rgb_topic:=/camera/color/image_raw \
-camera_info_topic:=/camera/color/camera_info \
-approx_sync:=false \
-use_sim_time:=true \
-rviz:=false \
-rtabmapviz:=true
-"
+# bagdataデータ名とする実行時刻を取得
+NOW_DATE=`date '+%Y.%m.%d-%H%M%S'`
+readonly CMD_SLAM="roslaunch rtabmap_ros rtabmap.launch \
+rtabmap_args:="--delete_db_on_start"
+database_path:=${PWD}/${NOW_DATE}_d435i.db
+depth_topic:=/camera/aligned_depth_to_color/image_raw
+rgb_topic:=/camera/color/image_raw
+camera_info_topic:=/camera/color/camera_info
+approx_sync:=false
+use_sim_time:=true
+rviz:=false
+rtabmapviz:=true"
 
 
 PROMPT="
