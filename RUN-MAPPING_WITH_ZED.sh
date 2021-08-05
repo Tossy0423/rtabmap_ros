@@ -63,6 +63,7 @@ while true;
       echo "start"
       echo "${CMD_LAUNCH_ZED}"  
       sleep 1
+      source ~/zedros_ws/devel/setup.bash
       ${CMD_LAUNCH_ZED}
     fi  
  
