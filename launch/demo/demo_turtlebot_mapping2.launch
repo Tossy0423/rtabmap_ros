@@ -88,7 +88,6 @@
 	  <param name="RGBD/OptimizeFromGraphEnd"    type="string" value="false"/>  <!-- Set to false to generate map correction between /map and /odom -->
 	  <param name="Kp/MaxDepth"                  type="string" value="0.0"/>
 	  <param name="Reg/Strategy"                 type="string" value="2"/>      <!-- Loop closure transformation: 0=Visual, 1=ICP, 2=Visual+ICP -->
-	  <param name="Icp/CorrespondenceRatio"      type="string" value="0.3"/>
 	  <param name="Vis/MinInliers"               type="string" value="15"/>      <!-- 3D visual words minimum inliers to accept loop closure -->
 	  <param name="Vis/InlierDistance"           type="string" value="0.1"/>    <!-- 3D visual words correspondence distance -->
 	  <param name="RGBD/AngularUpdate"           type="string" value="0.1"/>    <!-- Update map only if the robot is moving -->
@@ -96,6 +95,23 @@
 	  <param name="RGBD/ProximityPathMaxNeighbors" type="string" value="0"/> 
 	  <param name="Rtabmap/TimeThr"              type="string" value="0"/>
 	  <param name="Mem/RehearsalSimilarity"      type="string" value="0.30"/>
+      
+      <!-- ICP Odometory に関するパラメーター -->
+      <param name="Icp/CorrespondenceRatio"      type="string" value="0.4"/>
+      <param name="Icp/PointToPlane"  type="string" value="true"/>
+      <param name="Icp/VoxelSize"     type="string" value="0.05"/>
+      <param name="Icp/Epsilon"       type="string" value="0.001"/>
+      <param name="Icp/PointToPlaneK"  type="string" value="5"/>
+      <param name="Icp/PointToPlaneRadius"  type="string" value="0.3"/>
+      <param name="Icp/MaxCorrespondenceDistance" type="string" value="0.1"/>
+      <param name="Icp/PM"             type="string" value="true"/> <!-- use libpointmatcher to handle PointToPlane with 2d scans-->
+      <param name="Icp/PMOutlierRatio" type="string" value="0.95"/>
+
+      <!-- SLAMの自由度を3DoFに固定 -->
+      <!-- 
+        Note: 平面を走る自律移動ロボットの場合自由度はx, y, thetaのみ.
+              自由度を減らすことで, 計算コスト削減と地図を作成しやすくする.
+      -->
 	  <param name="Reg/Force3DoF"                type="string" value="true"/>
 	  <param name="GridGlobal/MinSize"           type="string" value="20"/>
 
@@ -103,7 +119,7 @@
       <param name="cloud_noise_filtering_min_neighbors" value="2"/>
       
       <!-- 2D-LiDARの距離を指定 -->
-      <param name="~gen_scan_max_depth" type="double" value="30"/>              
+      <param name="~gen_scan_max_depth" type="double" value="100.0"/>              
       
       <!-- 0=Frame-to-Map (F2M) 1=Frame-to-Frame (F2F) -->
       <param name="Odom/Strategy" value="0"/>                                   
